@@ -1,0 +1,1860 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ehsan.Ghodosi | مشاور املاک منطقه دو مشهد</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lalezar&family=Vazirmatn:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        /* Reset and Base Styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        :root {
+            --primary: #000000;
+            --secondary: #1a1a1a;
+            --accent: #D4AF37; /* رنگ طلایی */
+            --accent-light: #FFD700;
+            --accent2: #B8860B; /* رنگ طلایی تیره */
+            --accent2-light: #DAA520;
+            --text: #e0e0e0;
+            --text-light: #a0a0a0;
+            --background: #121212;
+            --white: #f5f5f5;
+            --shadow: 0 8px 30px rgba(0, 0, 0, 0.3);
+            --shadow-heavy: 0 15px 40px rgba(0, 0, 0, 0.5);
+            --radius: 20px;
+            --gradient: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+        }
+        
+        body {
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
+            color: var(--text);
+            line-height: 1.7;
+            overflow-x: hidden;
+            font-family: 'Vazirmatn', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        /* Loading Screen */
+        .loading-screen {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: black;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            transition: opacity 0.5s ease, visibility 0.5s ease;
+        }
+        
+        .loading-screen.hidden {
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .loading-logo {
+            width: 120px;
+            height: 120px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin-bottom: 2rem;
+            border: 5px solid var(--accent);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.5);
+            animation: pulse 2s infinite;
+        }
+        
+        .loading-spinner {
+            width: 60px;
+            height: 60px;
+            border: 5px solid rgba(212, 175, 55, 0.3);
+            border-radius: 50%;
+            border-top-color: var(--accent);
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+            100% { transform: scale(1); }
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* Header Styles */
+        header {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 1.2rem 0;
+            box-shadow: var(--shadow-heavy);
+            position: relative;
+            z-index: 100;
+        }
+        
+        .header-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 2rem;
+        }
+        
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .logo-img {
+            width: 70px;
+            height: 70px;
+            border-radius: 50%;
+            object-fit: cover;
+            box-shadow: 0 8px 25px rgba(212, 175, 55, 0.3);
+            transition: all 0.4s ease;
+            border: 3px solid var(--accent);
+        }
+        
+        .logo:hover .logo-img {
+            transform: rotate(15deg) scale(1.1);
+            box-shadow: 0 12px 35px rgba(212, 175, 55, 0.5);
+        }
+        
+        .logo-text {
+            font-size: 2.2rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            font-family: 'Lalezar', cursive;
+            color: var(--white);
+            background: none;
+            -webkit-text-fill-color: var(--white);
+        }
+        
+        .admin-login-link {
+            font-size: 0.9rem;
+            color: var(--accent);
+            text-decoration: none;
+            transition: all 0.3s;
+            padding: 0.3rem 0.8rem;
+            border-radius: 5px;
+            border: 1px solid var(--accent);
+        }
+        
+        .admin-login-link:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+        
+        /* Navigation */
+        nav ul {
+            display: flex;
+            list-style: none;
+            gap: 1rem;
+        }
+        
+        nav a {
+            color: var(--white);
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            padding: 0.5rem 1rem;
+            border-radius: 25px;
+        }
+        
+        nav a:hover {
+            background: rgba(212, 175, 55, 0.15);
+            transform: translateY(-2px);
+        }
+        
+        /* Hero Section */
+        .hero {
+            background: 
+                linear-gradient(rgba(0, 0, 0, 0.85), rgba(26, 26, 26, 0.9)),
+                url('https://images.unsplash.com/photo-1560518883-ce09059eeffa?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1073&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            color: var(--white);
+            padding: 6rem 2rem;
+            text-align: center;
+            min-height: 80vh;
+            display: flex;
+            align-items: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 70% 30%, rgba(212, 175, 55, 0.2) 0%, transparent 50%);
+        }
+        
+        .hero-container {
+            max-width: 900px;
+            margin: 0 auto;
+            width: 100%;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .hero h1 {
+            font-size: 3.5rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+            font-weight: 800;
+            text-shadow: 3px 3px 10px rgba(0, 0, 0, 0.4);
+            font-family: 'Lalezar', cursive;
+            color: var(--accent);
+        }
+        
+        .hero p {
+            font-size: 1.4rem;
+            margin-bottom: 3rem;
+            opacity: 0.95;
+            line-height: 1.8;
+            max-width: 700px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        
+        .hero-subtitle {
+            font-size: 1.8rem;
+            color: var(--accent-light);
+            margin-bottom: 2rem;
+            font-weight: 600;
+        }
+        
+        .hero-buttons {
+            display: flex;
+            gap: 1.5rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 1.2rem 2.5rem;
+            border-radius: 50px;
+            font-weight: 700;
+            text-decoration: none;
+            transition: all 0.4s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+            border: none;
+            font-size: 1.1rem;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: 0.5s;
+        }
+        
+        .btn:hover::before {
+            left: 100%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: var(--primary);
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-8px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(212, 175, 55, 0.4);
+        }
+        
+        .btn-secondary {
+            background: transparent;
+            color: var(--white);
+            border: 3px solid var(--white);
+        }
+        
+        .btn-secondary:hover {
+            background-color: rgba(212, 175, 55, 0.15);
+            transform: translateY(-8px) scale(1.05);
+        }
+        
+        /* Properties Section */
+        .properties {
+            padding: 4rem 2rem;
+            background: var(--background);
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 4rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .section-title h2 {
+            font-size: 2.8rem;
+            margin-bottom: 1.5rem;
+            font-weight: 800;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.3);
+            font-family: 'Lalezar', cursive;
+            color: var(--accent);
+        }
+        
+        .section-title p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto;
+            opacity: 0.9;
+            line-height: 1.8;
+        }
+        
+        .properties-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .property-card {
+            background: var(--gradient);
+            border-radius: var(--radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: all 0.4s ease;
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            position: relative;
+        }
+        
+        .property-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-heavy);
+            border-color: var(--accent);
+        }
+        
+        .property-image {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+        }
+        
+        .property-details {
+            padding: 1.2rem;
+        }
+        
+        .property-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.8rem;
+            color: var(--accent);
+            font-weight: 700;
+        }
+        
+        .property-info {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 0.6rem;
+            margin-bottom: 1rem;
+        }
+        
+        .property-info-item {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.8rem;
+        }
+        
+        .property-info-item i {
+            color: var(--accent);
+            font-size: 0.9rem;
+        }
+        
+        .property-type {
+            display: inline-block;
+            padding: 0.3rem 0.8rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+        }
+        
+        .property-type.sale {
+            background: #28a745;
+            color: white;
+        }
+        
+        .property-type.rent {
+            background: #007bff;
+            color: white;
+        }
+        
+        .property-type.mortgage {
+            background: #6f42c1;
+            color: white;
+        }
+        
+        .property-type.presale {
+            background: #fd7e14;
+            color: white;
+        }
+        
+        .property-actions {
+            display: flex;
+            gap: 0.5rem;
+            margin-top: 0.8rem;
+        }
+        
+        .btn-small {
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            font-size: 0.7rem;
+            cursor: pointer;
+            border: none;
+            transition: all 0.3s;
+        }
+        
+        .btn-danger {
+            background: #dc3545;
+            color: white;
+        }
+        
+        .btn-success {
+            background: #28a745;
+            color: white;
+        }
+        
+        .sold-badge {
+            position: absolute;
+            top: 10px;
+            left: 10px;
+            background: #dc3545;
+            color: white;
+            padding: 0.4rem 0.8rem;
+            border-radius: 5px;
+            font-weight: bold;
+            z-index: 10;
+            font-size: 0.8rem;
+        }
+        
+        /* Quick Contact Section */
+        .quick-contact-section {
+            padding: 4rem 2rem;
+            background: var(--background);
+            position: relative;
+        }
+        
+        .quick-contact-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 3rem;
+        }
+        
+        .contact-info {
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
+        }
+        
+        .contact-item {
+            display: flex;
+            align-items: center;
+            gap: 1.5rem;
+            transition: all 0.3s ease;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            background: var(--secondary);
+            box-shadow: var(--shadow);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
+        
+        .contact-item:hover {
+            transform: translateX(15px);
+            box-shadow: var(--shadow-heavy);
+        }
+        
+        .contact-icon {
+            width: 70px;
+            height: 70px;
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.6rem;
+            color: var(--primary);
+            box-shadow: 0 8px 20px rgba(212, 175, 55, 0.3);
+            flex-shrink: 0;
+        }
+        
+        .contact-details h3 {
+            margin-bottom: 0.8rem;
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: var(--white);
+        }
+        
+        .contact-details a, .contact-details p {
+            color: var(--text);
+            text-decoration: none;
+            transition: color 0.3s;
+            font-size: 1.1rem;
+        }
+        
+        .contact-details a:hover {
+            color: var(--accent-light);
+        }
+        
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        
+        .social-link {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-size: 1.5rem;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+            position: relative;
+        }
+        
+        .social-link::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .social-link:hover::after {
+            opacity: 1;
+        }
+        
+        .social-link:hover {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            transform: translateY(-8px) scale(1.1);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+        }
+        
+        .social-text {
+            position: absolute;
+            bottom: -25px;
+            right: 50%;
+            transform: translateX(50%);
+            font-size: 0.8rem;
+            white-space: nowrap;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .social-link:hover .social-text {
+            opacity: 1;
+        }
+        
+        .quick-contact {
+            background: var(--gradient);
+            padding: 3rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-heavy);
+            text-align: center;
+            transition: all 0.4s ease;
+            color: var(--white);
+            border: 2px solid var(--accent2);
+        }
+        
+        .quick-contact:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.3);
+        }
+        
+        .quick-contact h3 {
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .quick-contact p {
+            margin-bottom: 2.5rem;
+            opacity: 0.9;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+        
+        .contact-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+        }
+        
+        .contact-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 1.2rem;
+            border-radius: 15px;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        .contact-btn.whatsapp {
+            background: linear-gradient(135deg, #25D366, #128C7E);
+            color: white;
+        }
+        
+        .contact-btn.telegram {
+            background: linear-gradient(135deg, #0088cc, #005f8b);
+            color: white;
+        }
+        
+        .contact-btn.call {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: var(--primary);
+        }
+        
+        .contact-btn.map {
+            background: linear-gradient(135deg, #34A853, #0F9D58);
+            color: white;
+        }
+        
+        .contact-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+        }
+        
+        /* Admin Login Modal */
+        .admin-login-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .admin-login-modal.show {
+            display: flex;
+            animation: fadeIn 0.3s;
+        }
+        
+        .admin-login-container {
+            background: var(--gradient);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-heavy);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--accent2);
+            width: 90%;
+            max-width: 350px;
+        }
+        
+        .admin-login-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top left, rgba(212, 175, 55, 0.3) 0%, transparent 50%);
+        }
+        
+        .admin-login-title {
+            font-size: 1.5rem;
+            margin-bottom: 1.5rem;
+            font-weight: 700;
+            position: relative;
+            z-index: 1;
+            color: var(--accent);
+        }
+        
+        .admin-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            text-align: right;
+        }
+        
+        .form-group label {
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+        
+        .form-group input, .form-group select {
+            padding: 0.8rem;
+            border-radius: 10px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: rgba(255, 255, 255, 0.1);
+            color: var(--white);
+            font-size: 0.9rem;
+            transition: all 0.3s;
+        }
+        
+        .form-group input:focus, .form-group select:focus {
+            outline: none;
+            border-color: var(--accent);
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.3);
+        }
+        
+        .admin-submit {
+            background: linear-gradient(135deg, var(--accent), var(--accent-light));
+            color: var(--primary);
+            border: none;
+            padding: 1rem;
+            border-radius: 10px;
+            font-weight: 700;
+            font-size: 1rem;
+            cursor: pointer;
+            transition: all 0.3s;
+            margin-top: 0.5rem;
+        }
+        
+        .admin-submit:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.4);
+        }
+        
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            left: 15px;
+            background: none;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            color: var(--text-light);
+        }
+        
+        .modal-close:hover {
+            color: var(--accent-light);
+        }
+        
+        /* Admin Panel */
+        .admin-panel {
+            display: none;
+            padding: 4rem 2rem;
+            background: var(--background);
+        }
+        
+        .admin-panel.active {
+            display: block;
+        }
+        
+        .admin-panel-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .admin-panel-title {
+            text-align: center;
+            margin-bottom: 3rem;
+            color: var(--accent);
+            font-size: 2.2rem;
+            font-family: 'Lalezar', cursive;
+        }
+        
+        .property-form {
+            background: var(--gradient);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-heavy);
+            margin-bottom: 3rem;
+            border: 2px solid var(--accent2);
+        }
+        
+        .property-form h3 {
+            margin-bottom: 1.5rem;
+            color: var(--accent);
+            font-size: 1.4rem;
+        }
+        
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 1.2rem;
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-actions {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #34A853, #0F9D58);
+            color: white;
+        }
+        
+        .btn-danger {
+            background: linear-gradient(135deg, #EA4335, #D93025);
+            color: white;
+        }
+        
+        /* Footer */
+        footer {
+            background: var(--gradient);
+            color: var(--white);
+            padding: 4rem 2rem 2rem;
+        }
+        
+        .footer-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
+        
+        .footer-col h4 {
+            font-size: 1.4rem;
+            margin-bottom: 1.5rem;
+            position: relative;
+            padding-bottom: 0.8rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .footer-col h4::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 50px;
+            height: 4px;
+            background: var(--accent);
+            border-radius: 2px;
+        }
+        
+        .footer-col ul {
+            list-style: none;
+        }
+        
+        .footer-col ul li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 1rem;
+        }
+        
+        .footer-col a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-col a:hover {
+            color: var(--accent);
+        }
+        
+        .copyright {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 1rem;
+        }
+        
+        /* Add to Home Section */
+        .add-to-home-section {
+            padding: 3rem 2rem;
+            background: var(--background);
+        }
+        
+        .add-to-home-container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: var(--gradient);
+            padding: 2rem;
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-heavy);
+            color: var(--white);
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--accent2);
+        }
+        
+        .add-to-home-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            right: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at top left, rgba(210, 105, 30, 0.3) 0%, transparent 50%);
+        }
+        
+        .add-to-home-content {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 2rem;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .add-to-home-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid var(--accent);
+            box-shadow: 0 10px 30px rgba(139, 69, 19, 0.4);
+            flex-shrink: 0;
+        }
+        
+        .add-to-home-text {
+            flex: 1;
+            text-align: right;
+        }
+        
+        .add-to-home-text h3 {
+            font-size: 1.6rem;
+            margin-bottom: 1rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        
+        .add-to-home-text p {
+            margin-bottom: 1.5rem;
+            opacity: 0.9;
+            line-height: 1.7;
+        }
+        
+        /* Visit Smart Section */
+        .visit-smart-section {
+            padding: 3rem 2rem;
+            background: var(--background);
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .visit-smart-container {
+            max-width: 800px;
+            margin: 0 auto;
+            text-align: center;
+        }
+        
+        .visit-smart-text {
+            font-size: 1.1rem;
+            color: var(--text-light);
+            margin-bottom: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        .visit-smart-contact {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            flex-wrap: wrap;
+        }
+        
+        .visit-smart-contact a {
+            color: var(--accent-light);
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s;
+        }
+        
+        .visit-smart-contact a:hover {
+            color: var(--white);
+        }
+        
+        /* Modal for Notifications */
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.7);
+            z-index: 2000;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .modal.show {
+            display: flex;
+            animation: fadeIn 0.3s;
+        }
+        
+        .modal-content {
+            background: var(--secondary);
+            border-radius: var(--radius);
+            padding: 2rem;
+            max-width: 500px;
+            width: 90%;
+            box-shadow: var(--shadow-heavy);
+            position: relative;
+            text-align: center;
+            color: var(--white);
+        }
+        
+        .modal-title {
+            font-size: 1.6rem;
+            margin-bottom: 1.5rem;
+            color: var(--white);
+            font-weight: 700;
+        }
+        
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+        
+        /* Responsive Styles */
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 1rem;
+            }
+            
+            nav ul {
+                gap: 0.5rem;
+            }
+            
+            nav a {
+                font-size: 0.9rem;
+                padding: 0.4rem 0.8rem;
+            }
+            
+            .hero {
+                padding: 4rem 1rem;
+                min-height: 70vh;
+            }
+            
+            .hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .hero p, .hero-subtitle {
+                font-size: 1.1rem;
+            }
+            
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .btn {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+                padding: 1rem 2rem;
+                font-size: 1rem;
+            }
+            
+            .quick-contact-container {
+                grid-template-columns: 1fr;
+            }
+            
+            .contact-buttons {
+                flex-direction: column;
+            }
+            
+            .properties {
+                padding: 3rem 1rem;
+            }
+            
+            .properties-grid {
+                grid-template-columns: 1fr;
+                gap: 1.2rem;
+            }
+            
+            .property-card {
+                padding: 0;
+            }
+            
+            .property-info {
+                grid-template-columns: 1fr;
+                gap: 0.5rem;
+            }
+            
+            .property-info-item {
+                font-size: 0.8rem;
+            }
+            
+            .quick-contact-section, .admin-panel, .add-to-home-section {
+                padding: 3rem 1rem;
+            }
+            
+            .logo-text {
+                font-size: 1.8rem;
+            }
+            
+            .logo-img {
+                width: 60px;
+                height: 60px;
+            }
+            
+            .social-text {
+                display: none;
+            }
+            
+            .form-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .property-actions {
+                flex-direction: column;
+            }
+            
+            .add-to-home-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .add-to-home-text {
+                text-align: center;
+            }
+            
+            .section-title h2 {
+                font-size: 2.2rem;
+            }
+            
+            .section-title p {
+                font-size: 1.1rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .hero {
+                padding: 3rem 1rem;
+                min-height: 60vh;
+            }
+            
+            .hero h1 {
+                font-size: 1.8rem;
+            }
+            
+            .properties, .quick-contact-section, .admin-panel, .add-to-home-section {
+                padding: 2rem 1rem;
+            }
+            
+            .property-card, .quick-contact, .admin-login-container, .add-to-home-container {
+                padding: 1.5rem;
+            }
+            
+            .contact-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+                padding: 1.2rem;
+            }
+            
+            .loading-logo {
+                width: 100px;
+                height: 100px;
+            }
+            
+            .property-info {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer-container {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+            
+            .visit-smart-contact {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading-screen" id="loadingScreen">
+        <img src="https://i.ibb.co/ksq5XHnY/logo.png" alt="Ehsan.Ghodosi Logo" class="loading-logo">
+        <div class="loading-spinner"></div>
+    </div>
+
+    <!-- Header -->
+    <header>
+        <div class="header-container">
+            <div class="logo">
+                <img src="https://i.ibb.co/ksq5XHnY/logo.png" alt="Ehsan.Ghodosi Logo" class="logo-img">
+                <div class="logo-text">Ehsan.Ghodosi</div>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="#home">خانه</a></li>
+                    <li><a href="#properties">فایل‌ها</a></li>
+                    <li><a href="#contact">تماس</a></li>
+                    <li><a href="#" class="admin-login-link" id="adminLoginLink">ورود مدیر</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-container">
+            <h1>با یک تماس صاحب ملک مورد نظر خود شوید</h1>
+            <p class="hero-subtitle">مشاور امور ملکی منطقه دو مشهد</p>
+            <div class="hero-buttons">
+                <a href="#properties" class="btn btn-primary">
+                    <i class="fas fa-home"></i> مشاهده فایل‌ها
+                </a>
+                <a href="#contact" class="btn btn-secondary">
+                    <i class="fas fa-phone-alt"></i> تماس با ما
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Properties Section -->
+    <section class="properties" id="properties">
+        <div class="section-title">
+            <h2>لیست فایل‌ها</h2>
+            <p>می‌توانید در اینجا فایل‌های موجود را مشاهده کنید</p>
+        </div>
+        
+        <div class="properties-grid" id="propertiesGrid">
+            <!-- Properties will be loaded here dynamically -->
+        </div>
+    </section>
+
+    <!-- Quick Contact Section -->
+    <section class="quick-contact-section" id="contact">
+        <div class="quick-contact-container">
+            <div class="contact-info">
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>آدرس</h3>
+                        <p>نبش فرامرز عباسی 32 مسکن قدوسی</p>
+                        <a href="https://www.google.com/maps/search/?api=1&query=نبش فرامرز عباسی 32 مسکن قدوسی" target="_blank">مسیریابی</a>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>شماره تماس</h3>
+                        <a href="tel:09154386372">۰۹۱۵۴۳۸۶۳۷۲</a>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>ایمیل</h3>
+                        <a href="mailto:ehsanghodo@gmail.com">ehsanghodo@gmail.com</a>
+                    </div>
+                </div>
+                
+                <div class="contact-item">
+                    <div class="contact-icon">
+                        <i class="fas fa-share-alt"></i>
+                    </div>
+                    <div class="contact-details">
+                        <h3>شبکه‌های اجتماعی</h3>
+                        <div class="social-links">
+                            <a href="https://t.me/ehsan_ghd" class="social-link" target="_blank">
+                                <i class="fab fa-telegram" style="color: white;"></i>
+                                <span class="social-text">تلگرام</span>
+                            </a>
+                            <a href="https://wa.me/989154386372" class="social-link" target="_blank">
+                                <i class="fab fa-whatsapp" style="color: white;"></i>
+                                <span class="social-text">واتساپ</span>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="quick-contact">
+                <h3>ارتباط سریع</h3>
+                <p>برای دریافت اطلاعات بیشتر و مشاوره رایگان، از طریق یکی از روش‌های زیر با ما در تماس باشید</p>
+                
+                <div class="contact-buttons">
+                    <a href="https://wa.me/989154386372" class="contact-btn whatsapp" target="_blank">
+                        <i class="fab fa-whatsapp"></i> واتساپ
+                    </a>
+                    
+                    <a href="https://t.me/ehsan_ghd" class="contact-btn telegram" target="_blank">
+                        <i class="fab fa-telegram"></i> تلگرام
+                    </a>
+                    
+                    <a href="tel:09154386372" class="contact-btn call">
+                        <i class="fas fa-phone-alt"></i> تماس تلفنی
+                    </a>
+                    
+                    <a href="https://www.google.com/maps/search/?api=1&query=نبش فرامرز عباسی 32 مسکن قدوسی" class="contact-btn map" target="_blank">
+                        <i class="fas fa-map-marker-alt"></i> مسیریابی
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Add to Home Section -->
+    <section class="add-to-home-section">
+        <div class="add-to-home-container">
+            <div class="add-to-home-content">
+                <img src="https://i.ibb.co/ksq5XHnY/logo.png" alt="Ehsan.Ghodosi Logo" class="add-to-home-logo">
+                <div class="add-to-home-text">
+                    <h3>افزودن به صفحه اصلی</h3>
+                    <p>برای دسترسی سریع‌تر به صفحه، این صفحه را به صفحه اصلی دستگاه خود اضافه کنید. با این کار می‌توانید مانند یک اپلیکیشن به صفحه ما دسترسی داشته باشید.</p>
+                    <button class="btn btn-primary" id="addToHomeBtn">
+                        <i class="fas fa-plus-circle"></i> افزودن به صفحه اصلی
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-container">
+            <div class="footer-col">
+                <h4>Ehsan.Ghodosi</h4>
+                <p>مشاور املاک منطقه دو مشهد با سال‌ها تجربه در ارائه بهترین خدمات املاک</p>
+            </div>
+            
+            <div class="footer-col">
+                <h4>خدمات ما</h4>
+                <ul>
+                    <li><i class="fas fa-home"></i> خرید و فروش ملک</li>
+                    <li><i class="fas fa-building"></i> رهن و اجاره</li>
+                    <li><i class="fas fa-file-contract"></i> مشاوره املاک</li>
+                    <li><i class="fas fa-search"></i> بازدید از ملک</li>
+                </ul>
+            </div>
+            
+            <div class="footer-col">
+                <h4>تماس با ما</h4>
+                <ul>
+                    <li><i class="fas fa-map-marker-alt"></i> نبش فرامرز عباسی 32 مسکن قدوسی</li>
+                    <li><i class="fas fa-phone-alt"></i> ۰۹۱۵۴۳۸۶۳۷۲</li>
+                    <li><i class="fas fa-envelope"></i> ehsanghodo@gmail.com</li>
+                    <li><i class="fab fa-telegram"></i> تلگرام: ehsan_ghd</li>
+                    <li><i class="fab fa-whatsapp"></i> واتساپ: ۰۹۱۵۴۳۸۶۳۷۲</li>
+                </ul>
+            </div>
+        </div>
+        
+        <div class="copyright">
+            <p>تمامی حقوق توسط شرکت Visit Smart محفوظ است &copy; ۱۴۰۴</p>
+        </div>
+    </footer>
+
+    <!-- Visit Smart Section -->
+    <section class="visit-smart-section">
+        <div class="visit-smart-container">
+            <p class="visit-smart-text">این صفحه مربوط به تبلیغات Visit Smart می‌باشد. جهت سفارش طراحی صفحات مشابه با شماره‌های زیر تماس بگیرید:</p>
+            <div class="visit-smart-contact">
+                <a href="tel:09389793809">۰۹۳۸۹۷۹۳۸۰۹</a>
+                <a href="tel:09158148021">۰۹۱۵۸۱۴۸۰۲۱</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Admin Login Modal -->
+    <div class="admin-login-modal" id="adminLoginModal">
+        <div class="admin-login-container">
+            <button class="modal-close" id="adminModalClose">&times;</button>
+            <h3 class="admin-login-title">ورود مدیر</h3>
+            <form class="admin-form" id="adminLoginForm">
+                <div class="form-group">
+                    <label for="username">نام کاربری</label>
+                    <input type="text" id="username" name="username" required>
+                </div>
+                <div class="form-group">
+                    <label for="password">رمز عبور</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+                <button type="submit" class="admin-submit">ورود</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin Panel -->
+    <section class="admin-panel" id="adminPanel">
+        <div class="admin-panel-container">
+            <h2 class="admin-panel-title">پنل مدیریت فایل‌ها</h2>
+            
+            <div class="property-form">
+                <h3>افزودن فایل جدید</h3>
+                <form id="propertyForm">
+                    <div class="form-grid">
+                        <div class="form-group">
+                            <label for="propertyTitle">عنوان ملک</label>
+                            <input type="text" id="propertyTitle" name="propertyTitle" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="propertyType">نوع معامله</label>
+                            <select id="propertyType" name="propertyType" required>
+                                <option value="sale">فروش</option>
+                                <option value="rent">اجاره</option>
+                                <option value="mortgage">رهن</option>
+                                <option value="presale">پیش فروش</option>
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="propertyArea">متراژ (متر مربع)</label>
+                            <input type="number" id="propertyArea" name="propertyArea" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="propertyLocation">محله</label>
+                            <input type="text" id="propertyLocation" name="propertyLocation" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="propertyAddress">آدرس</label>
+                            <input type="text" id="propertyAddress" name="propertyAddress" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="propertyRooms">تعداد اتاق</label>
+                            <input type="number" id="propertyRooms" name="propertyRooms" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="propertyFloor">طبقه</label>
+                            <input type="number" id="propertyFloor" name="propertyFloor" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="propertyYear">سال ساخت</label>
+                            <input type="number" id="propertyYear" name="propertyYear" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="propertyBalcony">بالکن</label>
+                            <input type="text" id="propertyBalcony" name="propertyBalcony" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="propertyWarehouse">انباری</label>
+                            <input type="text" id="propertyWarehouse" name="propertyWarehouse" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="propertyElevator">آسانسور</label>
+                            <input type="text" id="propertyElevator" name="propertyElevator" required>
+                        </div>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn btn-primary">ذخیره فایل</button>
+                        <button type="button" class="btn btn-danger" id="logoutBtn">خروج از پنل</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Notifications -->
+    <div class="modal" id="notificationModal">
+        <div class="modal-content">
+            <button class="modal-close" id="modalClose">&times;</button>
+            <h3 class="modal-title" id="modalTitle">عنوان اعلان</h3>
+            <p id="modalMessage">پیام اعلان در اینجا نمایش داده می‌شود.</p>
+            <button class="btn btn-primary" id="modalOkBtn">متوجه شدم</button>
+        </div>
+    </div>
+
+    <script>
+        // Loading Screen - سریعتر نمایش داده شود
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loadingScreen').classList.add('hidden');
+            }, 1000);
+        });
+
+        // ========== فقط این دو خط برای هر مشتری تغییر می‌کنند ==========
+        const JSONBIN_BIN_ID = '692587e1d0ea881f4bff0764'; // Bin ID مشتری
+        const JSONBIN_API_KEY = '$2a$10$5Rj0R.PYLfhsfk/azhYTM.3R1z06QSTNRKWkgJwhg1aD1pXQnMrWm'; // API Key مشتری
+        // ========== پایان بخش قابل تغییر ==========
+
+        // Admin Login Functionality
+        const adminLoginLink = document.getElementById('adminLoginLink');
+        const adminLoginModal = document.getElementById('adminLoginModal');
+        const adminModalClose = document.getElementById('adminModalClose');
+        const adminLoginForm = document.getElementById('adminLoginForm');
+        const adminPanel = document.getElementById('adminPanel');
+        const logoutBtn = document.getElementById('logoutBtn');
+        const notificationModal = document.getElementById('notificationModal');
+        const modalClose = document.getElementById('modalClose');
+        const modalOkBtn = document.getElementById('modalOkBtn');
+        const modalTitle = document.getElementById('modalTitle');
+        const modalMessage = document.getElementById('modalMessage');
+        const addToHomeBtn = document.getElementById('addToHomeBtn');
+
+        // توابع JSONBin
+        async function savePropertiesToJSONBin(properties) {
+            try {
+                const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}`, {
+                    method: 'PUT',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'X-Master-Key': JSONBIN_API_KEY,
+                        'X-Bin-Name': 'Ehsan Ghodosi Properties'
+                    },
+                    body: JSON.stringify(properties)
+                });
+                
+                const data = await response.json();
+                return response.ok;
+            } catch (error) {
+                console.error('خطا در ذخیره در JSONBin:', error);
+                return false;
+            }
+        }
+
+        async function loadPropertiesFromJSONBin() {
+            try {
+                const response = await fetch(`https://api.jsonbin.io/v3/b/${JSONBIN_BIN_ID}/latest`, {
+                    headers: {
+                        'X-Master-Key': JSONBIN_API_KEY
+                    }
+                });
+                
+                const data = await response.json();
+                return data.record || [];
+            } catch (error) {
+                console.error('خطا در دریافت از JSONBin:', error);
+                return [];
+            }
+        }
+
+        // Show modal function
+        function showModal(title, message) {
+            modalTitle.textContent = title;
+            modalMessage.textContent = message;
+            notificationModal.classList.add('show');
+        }
+
+        // Close modal
+        modalClose.addEventListener('click', () => {
+            notificationModal.classList.remove('show');
+        });
+
+        modalOkBtn.addEventListener('click', () => {
+            notificationModal.classList.remove('show');
+        });
+
+        // Show admin login modal
+        adminLoginLink.addEventListener('click', (e) => {
+            e.preventDefault();
+            adminLoginModal.classList.add('show');
+        });
+
+        // Close admin login modal
+        adminModalClose.addEventListener('click', () => {
+            adminLoginModal.classList.remove('show');
+        });
+
+        // Add to Home Screen functionality
+        addToHomeBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            
+            if ('BeforeInstallPromptEvent' in window) {
+                window.dispatchEvent(new Event('beforeinstallprompt'));
+            } else {
+                showModal('افزودن به صفحه اصلی', 'برای افزودن این صفحه به صفحه اصلی، از منوی مرورگر خود گزینه "Add to Home Screen" یا "افزودن به صفحه اصلی" را انتخاب کنید.');
+            }
+        });
+
+        // Check if user is already logged in
+        if (localStorage.getItem('adminLoggedIn') === 'true') {
+            adminPanel.classList.add('active');
+        }
+
+        // Admin login form submission
+        adminLoginForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            
+            if (username === 'visitsmart' && password === '123456') {
+                localStorage.setItem('adminLoggedIn', 'true');
+                adminPanel.classList.add('active');
+                adminLoginModal.classList.remove('show');
+                showModal('ورود موفق', 'با موفقیت وارد پنل مدیریت شدید.');
+            } else {
+                showModal('خطا در ورود', 'نام کاربری یا رمز عبور اشتباه است.');
+            }
+        });
+
+        // Logout functionality
+        logoutBtn.addEventListener('click', () => {
+            localStorage.removeItem('adminLoggedIn');
+            adminPanel.classList.remove('active');
+            showModal('خروج موفق', 'با موفقیت از پنل مدیریت خارج شدید.');
+        });
+
+        // Property Form Functionality
+        const propertyForm = document.getElementById('propertyForm');
+        const propertiesGrid = document.getElementById('propertiesGrid');
+
+        // Load properties from JSONBin
+        async function loadProperties() {
+            let properties = [];
+            
+            try {
+                properties = await loadPropertiesFromJSONBin();
+                
+                if (properties.length > 0) {
+                    localStorage.setItem('properties', JSON.stringify(properties));
+                } else {
+                    properties = JSON.parse(localStorage.getItem('properties')) || [];
+                }
+            } catch (error) {
+                console.error('خطا در بارگذاری از JSONBin:', error);
+                properties = JSON.parse(localStorage.getItem('properties')) || [];
+            }
+            
+            displayProperties(properties);
+        }
+
+        // تابع برای نمایش فایل‌ها
+        function displayProperties(properties) {
+            propertiesGrid.innerHTML = '';
+            
+            if (properties.length === 0) {
+                propertiesGrid.innerHTML = '<p style="text-align: center; grid-column: 1/-1; padding: 2rem;">هنوز فایلی اضافه نشده است.</p>';
+                return;
+            }
+            
+            properties.forEach((property, index) => {
+                const propertyCard = document.createElement('div');
+                propertyCard.className = 'property-card';
+                
+                const soldBadge = property.sold ? '<div class="sold-badge">فروخته شد</div>' : '';
+                
+                let typeClass = '';
+                let typeText = '';
+                switch(property.type) {
+                    case 'sale':
+                        typeClass = 'sale';
+                        typeText = 'فروش';
+                        break;
+                    case 'rent':
+                        typeClass = 'rent';
+                        typeText = 'اجاره';
+                        break;
+                    case 'mortgage':
+                        typeClass = 'mortgage';
+                        typeText = 'رهن';
+                        break;
+                    case 'presale':
+                        typeClass = 'presale';
+                        typeText = 'پیش فروش';
+                        break;
+                }
+                
+                propertyCard.innerHTML = `
+                    ${soldBadge}
+                    <div class="property-details">
+                        <h3 class="property-title">${property.title}</h3>
+                        <div class="property-type ${typeClass}">${typeText}</div>
+                        <div class="property-info">
+                            <div class="property-info-item">
+                                <i class="fas fa-ruler-combined"></i>
+                                <span>${property.area} متر</span>
+                            </div>
+                            <div class="property-info-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>${property.location}</span>
+                            </div>
+                            <div class="property-info-item">
+                                <i class="fas fa-door-open"></i>
+                                <span>${property.rooms} اتاق</span>
+                            </div>
+                            <div class="property-info-item">
+                                <i class="fas fa-building"></i>
+                                <span>طبقه ${property.floor}</span>
+                            </div>
+                            <div class="property-info-item">
+                                <i class="fas fa-calendar-alt"></i>
+                                <span>${property.year}</span>
+                            </div>
+                            <div class="property-info-item">
+                                <i class="fas fa-vector-square"></i>
+                                <span>${property.balcony}</span>
+                            </div>
+                            <div class="property-info-item">
+                                <i class="fas fa-warehouse"></i>
+                                <span>${property.warehouse}</span>
+                            </div>
+                            <div class="property-info-item">
+                                <i class="fas fa-elevator"></i>
+                                <span>${property.elevator}</span>
+                            </div>
+                            <div class="property-info-item">
+                                <i class="fas fa-map-pin"></i>
+                                <span>${property.address}</span>
+                            </div>
+                        </div>
+                        ${localStorage.getItem('adminLoggedIn') === 'true' ? `
+                        <div class="property-actions">
+                            <button class="btn-small btn-danger" onclick="deleteProperty(${index})">حذف</button>
+                            <button class="btn-small btn-success" onclick="markAsSold(${index})">فروخته شد</button>
+                        </div>
+                        ` : ''}
+                    </div>
+                `;
+                propertiesGrid.appendChild(propertyCard);
+            });
+        }
+
+        // Delete property
+        window.deleteProperty = async function(index) {
+            const properties = JSON.parse(localStorage.getItem('properties')) || [];
+            properties.splice(index, 1);
+            localStorage.setItem('properties', JSON.stringify(properties));
+            
+            await savePropertiesToJSONBin(properties);
+            
+            loadProperties();
+            showModal('حذف موفق', 'فایل با موفقیت حذف شد.');
+        };
+
+        // Mark property as sold
+        window.markAsSold = async function(index) {
+            const properties = JSON.parse(localStorage.getItem('properties')) || [];
+            properties[index].sold = true;
+            localStorage.setItem('properties', JSON.stringify(properties));
+            
+            await savePropertiesToJSONBin(properties);
+            
+            loadProperties();
+            showModal('بروزرسانی موفق', 'ملک با موفقیت به عنوان فروخته شده علامت گذاری شد.');
+        };
+
+        // Add new property
+        propertyForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const property = {
+                title: document.getElementById('propertyTitle').value,
+                type: document.getElementById('propertyType').value,
+                area: document.getElementById('propertyArea').value,
+                location: document.getElementById('propertyLocation').value,
+                address: document.getElementById('propertyAddress').value,
+                rooms: document.getElementById('propertyRooms').value,
+                floor: document.getElementById('propertyFloor').value,
+                year: document.getElementById('propertyYear').value,
+                balcony: document.getElementById('propertyBalcony').value,
+                warehouse: document.getElementById('propertyWarehouse').value,
+                elevator: document.getElementById('propertyElevator').value,
+                sold: false
+            };
+            
+            const properties = JSON.parse(localStorage.getItem('properties')) || [];
+            properties.push(property);
+            localStorage.setItem('properties', JSON.stringify(properties));
+            
+            const savedToJSONBin = await savePropertiesToJSONBin(properties);
+            
+            propertyForm.reset();
+            
+            loadProperties();
+            
+            if (savedToJSONBin) {
+                showModal('فایل اضافه شد', 'فایل جدید با موفقیت به لیست اضافه شد و در سرور ذخیره گردید.');
+            } else {
+                showModal('فایل اضافه شد', 'فایل جدید به لیست اضافه شد اما در سرور ذخیره نشد. لطفاً اتصال اینترنت را بررسی کنید.');
+            }
+        });
+
+        // Load properties on page load
+        loadProperties();
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
